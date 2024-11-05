@@ -1,4 +1,14 @@
 {% extends "layout.html" %}
 
 
-{% endblock %}
+{% block content %}
+<section>
+    {% for t in tEvents %}
+    <h1>{{tEvent.name}}</h1>
+    
+    
+    {% endfor %}
+</section>
+
+
+{% endblock  %}

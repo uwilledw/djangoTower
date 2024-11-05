@@ -11,6 +11,12 @@
         <a href="/">
             <span role="img" aria-label="Home" title="Home">🏠</span>
         </a> |
+        <a href="{% url 'users:login' %}">
+            <span role="img" aria-label="User Login" title="User Login">🔏</span>
+        </a> |
+        <a href="{% url 'users:register' %}">
+            <span role="img" aria-label="User Registration" title="User Registration">🚀</span>
+        </a> |
     </nav>
     <main>
         {% block content %}

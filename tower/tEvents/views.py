@@ -5,4 +5,4 @@ from .models import TEvent
 
 def tEventsList(request):
     tEvents = TEvent.objects.all()
-    return render(request, )
+    return render(request, 'tEventsList.html', {'tEvents': tEvents} )
