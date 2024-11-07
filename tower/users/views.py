@@ -22,3 +22,8 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, "register.html", {"form": form})
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect("tEvents:list")
