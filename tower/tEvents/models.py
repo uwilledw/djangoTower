@@ -11,8 +11,8 @@ class TEvent(models.Model):
     capacity = models.IntegerField()
     startDate = models.DateTimeField()
     isCanceled = models.BooleanField(default=False)
-    EventType = models.TextChoices("EventType", "concert convetion sport digital")
-    type = models.CharField(blank=True, choices=EventType, max_length=10)
+    EventType = models.TextChoices("EventType", "concert convention sport digital")
+    type = models.CharField(blank=True, choices=EventType.choices, max_length=10)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
