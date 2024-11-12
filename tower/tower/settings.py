@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tower',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,7 +83,7 @@ DATABASES = {
         "USER": "postgres",
         "PASSWORD": "Revenant1713?",
         "HOST": "localhost",
-        "PORT": "8080",
+        "PORT": "8080"
     }
 }
 
