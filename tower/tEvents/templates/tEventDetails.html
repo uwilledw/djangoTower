@@ -4,7 +4,19 @@
 
 {% block content %}
 <section class="row">
-    <h1>{{tEvent.name}}</h1>
+    <div class="col-md-12 p-0">
+        <img class="hero-img img-fluid"
+            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+        alt="">
+    </div>
+</section>
+<section class="row p-2">
+    <div class="col-md-3">
+        <div title="Event Details" class="bg-light rounded my-2">
+                <img class="img-fluid rounded-top event-img" :src="tEvent.coverImg" :alt="tEvent.title">
+                <h5 class="p-2 text-dark">{{ tEvent.name }}</h5>
+        </div>
+    </div>
 </section>
 
 
