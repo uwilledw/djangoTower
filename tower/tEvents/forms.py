@@ -4,4 +4,4 @@ from . import models
 class CreateTEvent(forms.ModelForm):
     class Meta:
         model = models.TEvent
-        fields = ['name', 'description', 'coverImg', 'location', 'capacity', 'startDate', 'isCancelled', 'type']
+        fields = ['name', 'description', 'coverImg', 'location', 'capacity', 'startDate', 'isCanceled', 'type']

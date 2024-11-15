@@ -1,0 +1,15 @@
+
+
+{% extends "layout.html" %}
+
+{% block content %}
+<section>
+    <h1>New Event</h1>
+    <form class="form-with-validatoin" action="{% url 'tEvents:newEvent' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button class="form-submit">Add Event</button>
+    </form>
+</section>
+
+{% endblock  %}
