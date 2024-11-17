@@ -1,0 +1,23 @@
+.hero-img {
+    height: 35vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.w-shadow :hover {
+    box-shadow: white 0px 2px 14px;
+}
+
+.event-img {
+    height: 25vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.detail-event-img {
+    height: auto;
+    width: 40vw;
+    border-radius: 5px;
+}

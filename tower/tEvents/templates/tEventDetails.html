@@ -3,11 +3,50 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<section class="row p-2">
-    <div class="col-md-3">
-        <div title="Event Details" class="bg-light rounded my-2">
-                <img class="img-fluid rounded-top event-img" :src="tEvent.coverImg" :alt="tEvent.title">
-                <h5 class="p-2 text-dark">{{ tEvent.name }}</h5>
+<section class="row justify-content-center my-3">
+    <div class="col-md-5">
+        <div>
+            <img class="detail-event-img" src="{{tEvent.coverImg}}" alt="tEvent.name">
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="">
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    {% if tEvent.isCanceled %}
+                    <h1 class="text-danger">CANCELED</h1>
+                    {% endif %}
+                    {% if tEvent.capacity < 1 and not tEvent.isCanceled %}
+                    <h1 class="text-danger">At Capacity
+                    </h1>
+                    {% endif %}
+                    <h3>{{ tEvent.name }}</h3>
+                    <h5>{{ tEvent.type }}</h5>
+                    <h6>{{ tEvent.location }}</h6>
+                    <h6>Starts at: {{ tEvent.startDate }} {{ tEvent.startTime }}</h6>
+                </div>
+                <div class="text-end m-2">
+                    <button @click="cancelEvent(tEvent.id)"
+                        v-if="account?.id == tEvent.creator.id && !tEvent.isCanceled"
+                        class="btn btn-danger" title="Cancel Event">Cancel</button>
+                </div>
+            </div>
+            <div>
+                <p>{{ tEvent.description }}</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-around">
+                <h6 v-if="!tEvent.isCanceled" class="m-0">Capacity: {{ tEvent.capacity }}</h6>
+                <button v-if="!isAttendee && account.id && tEvent.capacity > 0 && !tEvent.isCanceled"
+                    @click="attend()" class="btn btn-outline-light">Attend</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 rounded">
+        <h1>Attendees:</h1>
+        <div v-if="eventAttendees[0] && !tEvent.isCanceled" class="border rounded p-2">
+            <img class="profile-img mx-1" v-for="a in eventAttendees" :src="a.picture" :alt="a.name"
+                :title="a.name">
         </div>
     </div>
 </section>

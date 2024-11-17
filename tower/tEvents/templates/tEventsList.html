@@ -4,9 +4,9 @@
 {% block content %}
 <section class="row">
     <div class="col-md-12 p-0">
-        {% comment %} <img class="img-fluid"
+        <img class="img-fluid hero-img"
             src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-        alt=""> {% endcomment %}
+        alt="">
     </div>
     <div class="col-12 text-end">
         <a href="{% url 'tEvents:newEvent' %}" class="btn btn-success">New</a>
@@ -20,10 +20,10 @@
         <a href="{% url 'tEvents:list' type='sport' %}" class="btn btn-outline-light mx-4">Sport</a>
         <a href="{% url 'tEvents:list' type='digital' %}" class="btn btn-outline-light mx-4">Digital</a>
     </div>
-  </section>
+</section>
 <section class="row p-2">
     {% for t in tEvents %}
-    <div class="col-md-3">
+    <div class="col-md-3 w-shadow">
         <div title="Event Details" class="bg-light rounded my-2">
             <a href="{% url 'tEvents:tEventDetails' id=t.id %}">
                 <img class="img-fluid rounded-top event-img" src="{{t.coverImg}}" alt="{{t.name}}">
