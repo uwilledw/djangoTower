@@ -26,27 +26,34 @@
                     <h6>Starts at: {{ tEvent.startDate }} {{ tEvent.startTime }}</h6>
                 </div>
                 <div class="text-end m-2">
-                    <button @click="cancelEvent(tEvent.id)"
-                        v-if="account?.id == tEvent.creator.id && !tEvent.isCanceled"
-                        class="btn btn-danger" title="Cancel Event">Cancel</button>
+                    {% if user == tEvent.creator and not tEvent.isCanceled %}
+                    <a href="{% url 'tEvents:cancel' id=tEvent.id %}"
+                    class="btn btn-danger" title="Cancel Event">Cancel</a>
+                    {% endif %}
                 </div>
             </div>
             <div>
                 <p>{{ tEvent.description }}</p>
             </div>
             <div class="d-flex align-items-center justify-content-around">
-                <h6 v-if="!tEvent.isCanceled" class="m-0">Capacity: {{ tEvent.capacity }}</h6>
-                <button v-if="!isAttendee && account.id && tEvent.capacity > 0 && !tEvent.isCanceled"
-                    @click="attend()" class="btn btn-outline-light">Attend</button>
+                {% if not tEvent.isCanceled %}
+                <h6 class="m-0">Capacity: {{ tEvent.capacity }}</h6>
+                {% endif %}
+                {% if user.is_authenticated and tEvent.capacity > 0 and not isAttending and not tEvent.isCanceled %}
+                <a href="{% url 'tEvents:attend' id=tEvent.id %}" v-if="!isAttendee && account.id && tEvent.capacity > 0 && !tEvent.isCanceled" class="btn btn-outline-light">Attend</a>
+                {% endif %}
             </div>
         </div>
     </div>
 
     <div class="col-md-10 rounded">
         <h1>Attendees:</h1>
-        <div v-if="eventAttendees[0] && !tEvent.isCanceled" class="border rounded p-2">
-            <img class="profile-img mx-1" v-for="a in eventAttendees" :src="a.picture" :alt="a.name"
-                :title="a.name">
+        {% if attendees and not tEvent.isCanceled %}
+        <div class="border rounded p-2">
+            {% for a in attendees %}
+            <h5>{{a.user}}, </h5>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </section>
