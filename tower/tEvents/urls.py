@@ -5,6 +5,7 @@ app_name = 'tEvents'
 
 urlpatterns = [
     path('', views.tEventsList, name="list"),
-    # path('<id:id>', views.tEventPage, name="tEventDetails")
+    path('<str:type>', views.tEventsList, name="list"),
+    path('<int:id>', views.tEventDetails, name="tEventDetails"),
     path('new-tEvent/', views.createEvent, name="newEvent")
 ]

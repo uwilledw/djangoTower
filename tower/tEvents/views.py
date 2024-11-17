@@ -5,8 +5,11 @@ from . import forms
 
 # Create your views here.
 
-def tEventsList(request):
-    tEvents = TEvent.objects.all()
+def tEventsList(request, type=None):
+    if type:
+        tEvents = TEvent.objects.get(type=type)
+    else:
+        tEvents = TEvent.objects.all()
     return render(request, 'tEventsList.html', {'tEvents': tEvents})
 
 def tEventDetails(request, id):

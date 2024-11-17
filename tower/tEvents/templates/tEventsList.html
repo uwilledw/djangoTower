@@ -12,13 +12,23 @@
         <a href="{% url 'tEvents:newEvent' %}" class="btn btn-success">New</a>
     </div>
 </section>
+<section class="row justify-content-center m-3 p-2 rounded">
+    <div class="col-10 text-center">
+        <button class="btn btn-outline-light mx-4">All</button>
+        <button class="btn btn-outline-light mx-4">Convention</button>
+        <button class="btn btn-outline-light mx-4">Concert</button>
+        <button class="btn btn-outline-light mx-4">Sport</button>
+        <button class="btn btn-outline-light mx-4">Digital</button>
+    </div>
+  </section>
 <section class="row p-2">
-    {% for t in tEvent %}
+    {% for t in tEvents %}
     <div class="col-md-3">
         <div title="Event Details" class="bg-light rounded my-2">
-            <img class="img-fluid rounded-top event-img" src="{{t.coverImg}}" alt="{{t.name}}">
-            <h5 class="p-2 text-dark">{{ t.name }}</h5>
-            <p>check</p>
+            <a href="{% url 'tEvents:tEventDetails' id=t.id %}">
+                <img class="img-fluid rounded-top event-img" src="{{t.coverImg}}" alt="{{t.name}}">
+                <h5 class="p-2 text-dark">{{ t.id }}</h5>
+            </a>
         </div>
     </div>
     {% endfor %}
