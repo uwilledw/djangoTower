@@ -7,7 +7,7 @@ from . import forms
 
 def tEventsList(request, type=None):
     if type:
-        tEvents = TEvent.objects.get(type=type)
+        tEvents = TEvent.objects.filter(type=type)
     else:
         tEvents = TEvent.objects.all()
     return render(request, 'tEventsList.html', {'tEvents': tEvents})

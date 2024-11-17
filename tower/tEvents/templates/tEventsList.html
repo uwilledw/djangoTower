@@ -14,11 +14,11 @@
 </section>
 <section class="row justify-content-center m-3 p-2 rounded">
     <div class="col-10 text-center">
-        <button class="btn btn-outline-light mx-4">All</button>
-        <button class="btn btn-outline-light mx-4">Convention</button>
-        <button class="btn btn-outline-light mx-4">Concert</button>
-        <button class="btn btn-outline-light mx-4">Sport</button>
-        <button class="btn btn-outline-light mx-4">Digital</button>
+        <a href="{% url 'tEvents:list' %}" class="btn btn-outline-light mx-4">All</a>
+        <a href="{% url 'tEvents:list' type='convention' %}" class="btn btn-outline-light mx-4">Convention</a>
+        <a href="{% url 'tEvents:list' type='concert' %}" class="btn btn-outline-light mx-4">Concert</a>
+        <a href="{% url 'tEvents:list' type='sport' %}" class="btn btn-outline-light mx-4">Sport</a>
+        <a href="{% url 'tEvents:list' type='digital' %}" class="btn btn-outline-light mx-4">Digital</a>
     </div>
   </section>
 <section class="row p-2">
