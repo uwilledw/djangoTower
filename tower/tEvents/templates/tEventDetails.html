@@ -50,11 +50,25 @@
         <h1>Attendees:</h1>
         {% if attendees and not tEvent.isCanceled %}
         <div class="border rounded p-2">
-            {% for a in attendees %}
-            <h5>{{a.user}}, </h5>
-            {% endfor %}
+            <h5>
+                {% for a in attendees %}
+                {{a.user}}, 
+                {% endfor %}
+            </h5>
             {% endif %}
         </div>
+    </div>
+</section>
+
+<section class="row justify-content-center">
+    <div class="col-md-8 my-4 p-3 bg-light text-dark rounded">
+        <form action="{% url 'tEvents:comment' id=tEvent.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <div class="text-end my-3">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
 </section>
 

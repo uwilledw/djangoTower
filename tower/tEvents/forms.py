@@ -8,3 +8,8 @@ class CreateTEvent(forms.ModelForm):
         widgets = {
             "startDate": forms.DateTimeInput(attrs={'type': 'datetime-local'})
         }
+
+class CreateComment(forms.ModelForm):
+    class Meta:
+        model = models.Comments
+        fields = ['body']

@@ -9,6 +9,7 @@ def login_view(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
+            return redirect("tEvents:list")
     else:
         form = AuthenticationForm()
     return render(request, "login.html", {"form": form})

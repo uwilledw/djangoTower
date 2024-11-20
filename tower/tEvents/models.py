@@ -26,6 +26,5 @@ class Ticket(models.Model):
 
 class Comments(models.Model):
     body = models.TextField(max_length=1000)
-    isAttending = models.BooleanField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    tEvent = models.ForeignKey(TEvent, on_delete=models.CASCADE)
+    eventId = models.IntegerField()

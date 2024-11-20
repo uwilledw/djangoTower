@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import TEvent, Ticket
+from .models import TEvent, Ticket, Comments
 from django.contrib.auth.decorators import login_required
 from . import forms
 
@@ -15,11 +15,13 @@ def tEventsList(request, type=None):
 def tEventDetails(request, id):
     tEvent = TEvent.objects.get(id=id)
     attendees = Ticket.objects.filter(tEvent=tEvent)
+    comments = Comments.objects.filter(eventId=id)
     if attendees.filter(user=request.user):
         isAttending = True
     else:
         isAttending = False
-    return render(request, 'tEventDetails.html', {'tEvent': tEvent, 'attendees':attendees, 'isAttending': isAttending})
+    form = forms.CreateComment()
+    return render(request, 'tEventDetails.html', {'tEvent': tEvent, 'attendees':attendees, 'isAttending': isAttending, 'form': form, 'comments':comments})
 
 @login_required(login_url="users/login")
 def cancelEvent(request, id):
@@ -50,7 +52,17 @@ def createEvent(request):
         newEvent = form.save(commit=False)
         newEvent.creator = request.user
         newEvent.save()
-        return redirect('tEvents:list')
+        return redirect('tEvents:tEventDetails', id=newEvent.id)
     else:
         form = forms.CreateTEvent()
         return render(request, 'tEventForm.html', {'form': form})
+    
+@login_required(login_url="users/login")
+def createComment(request, id):
+    form = forms.CreateComment(request.POST, request.FILES)
+    if form.is_valid():
+        newComment = form.save(commit=False)
+        newComment.creator = request.user
+        newComment.eventId = id
+        newComment.save()
+    return redirect('tEvents:tEventDetails', id=id)
