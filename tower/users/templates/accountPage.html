@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
+            <form class="logout" action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="logout-button" aria-label="User Logout" title="User Logout">👋</button>
+            </form>
+            {% else %}
+            <a href="{% url 'users:login' %}">
+                <span role="img" aria-label="User Login" title="User Login">🔏</span>
+            </a> |
+            <a href="{% url 'users:register' %}">
+                <span role="img" aria-label="User Registration" title="User Registration">🚀</span>
+            </a> |
+            {% endif %}
 
 
 {% endblock  %}
