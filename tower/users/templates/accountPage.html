@@ -1,19 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-{% if user.is_authenticated %}
+<section class="row justify-content-center">
+    {% if user.is_authenticated %}
+        <div class="col-10 text-end my-4">
             <form class="logout" action="{% url 'users:logout' %}" method="post">
                 {% csrf_token %}
-                <button class="logout-button" aria-label="User Logout" title="User Logout">👋</button>
+                <button class="btn btn-danger" aria-label="User Logout" title="User Logout">Logout</button>
             </form>
-            {% else %}
-            <a href="{% url 'users:login' %}">
-                <span role="img" aria-label="User Login" title="User Login">🔏</span>
-            </a> |
-            <a href="{% url 'users:register' %}">
-                <span role="img" aria-label="User Registration" title="User Registration">🚀</span>
-            </a> |
-            {% endif %}
+        </div>
+    {% else %}
+    <div class="col-10 text-center my-4">
+        <a href="{% url 'users:login' %}">
+            <span class="btn btn-success m-2" aria-label="User Login" title="User Login">Login</span>
+        </a>
+        <a href="{% url 'users:register' %}">
+            <span class="btn btn-success m-3" aria-label="User Registration" title="User Registration">Sign Up</span>
+        </a>
+    </div>
+    {% endif %}
+</section>
+<section class="row">
 
-
+</section>
 {% endblock  %}

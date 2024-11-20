@@ -31,5 +31,6 @@ def logout_view(request):
         return redirect("tEvents:list")
     
 def accountPage(request):
-    tickets = Ticket.objects.filter(user=request.user)
+    if request.user:
+        tickets = Ticket.objects.filter(user=request.user.id)
     return render(request, "accountPage.html", {"tickets":tickets})

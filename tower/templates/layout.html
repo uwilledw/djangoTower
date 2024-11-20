@@ -12,12 +12,14 @@
 <body class="bg-dark">
     <header>
         <nav class="d-flex align-items-center justify-content-between navbar navbar-expand-lg navbar-dark bg-dark px-3 border-bottom border-outline-light">
-            <a href="{% url 'tEvents:list' %}" class=" selectable rounded fs-2 px-2 col-3 text-light">Home</a>
+            <a href="{% url 'tEvents:list' %}" class=" selectable rounded fs-2 px-2 col-3 text-light"> <span class="btn rounded btn-dark fs-3">Home</span></a>
             
                 <h1 class="text-light col-6 text-center">The Tower🦒</h1>
             
             <div class="col-3 text-end">
+                {% if user.is_authenticated %}
                 <a href="{% url 'tEvents:newEvent' %}" class="btn btn-outline-light mx-2 p-2">Make Event</a>
+                {% endif %}
                 <a class="btn btn-success btn-outline-light mx-2 p-2" href="{% url 'users:account' %}">Account</a>
             </div>
             
