@@ -25,6 +25,6 @@ class Ticket(models.Model):
 
 
 class Comments(models.Model):
-    body = models.TextField(max_length=1000)
+    body = models.TextField(max_length=1000, verbose_name="Make a Comment")
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     eventId = models.IntegerField()

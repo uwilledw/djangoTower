@@ -10,5 +10,6 @@ urlpatterns = [
     path('tEvents/<int:id>/cancel', views.cancelEvent, name="cancel"),
     path('tEvents/<int:id>/attend', views.attendEvent, name="attend"),
     path('tEvents/<int:id>/comment', views.createComment, name="comment"),
+    path('tEvents/<int:id>/comment/<int:cId>', views.deleteComment, name="deleteComment"),
     path('new-tEvent/', views.createEvent, name="newEvent")
 ]

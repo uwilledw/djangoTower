@@ -66,3 +66,10 @@ def createComment(request, id):
         newComment.eventId = id
         newComment.save()
     return redirect('tEvents:tEventDetails', id=id)
+
+@login_required
+def deleteComment(request, id, cId):
+    comment = Comments.objects.get(id=cId)
+    if comment.creator == request.user:
+        comment.delete()
+    return redirect('tEvents:tEventDetails', id=id)

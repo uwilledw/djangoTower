@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
+from tEvents.models import Ticket
 
 # Create your views here.
 
@@ -28,3 +29,7 @@ def logout_view(request):
     if request.method == "POST":
         logout(request)
         return redirect("tEvents:list")
+    
+def accountPage(request):
+    tickets = Ticket.objects.filter(user=request.user)
+    return render(request, "accountPage.html", {"tickets":tickets})
