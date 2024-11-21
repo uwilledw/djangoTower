@@ -3,13 +3,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<section>
-    <h1>New Event</h1>
-    <form class="form-with-validation" action="{% url 'tEvents:newEvent' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button class="form-submit">Add Event</button>
-    </form>
-</section>
+<section class="row justify-content-center my-3 mb-5">
+    <div class="col-9 text-center">
+        <h1>New Event:</h1>
+    </div>
+    <div class="col-5 mb-5">
+        <form class="form-with-validation" action="{% url 'tEvents:newEvent' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <button class="btn btn-light">Add Event</button>
+        </form>
+    </div>
+    </section>
 
 {% endblock  %}
