@@ -34,8 +34,10 @@ def cancelEvent(request, id):
 @login_required(login_url="users/login")
 def attendEvent(request, id):
     tEvent = TEvent.objects.get(id=id)
-    tick = Ticket(tEvent=tEvent, user=request.user)
-    tick.save()
+    tick = Ticket.objects.filter(tEvent=tEvent, user=request.user)
+    if not tick:
+        newTick = Ticket(tEvent=tEvent, user=request.user)
+        newTick.save()
     return redirect('tEvents:tEventDetails', id=tEvent.id)
 
     
