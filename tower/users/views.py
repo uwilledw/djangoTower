@@ -2,27 +2,28 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from tEvents.models import Ticket
+from . import forms
 
 # Create your views here.
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = forms.myAuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
             return redirect("tEvents:list")
     else:
-        form = AuthenticationForm()
+        form = forms.myAuthenticationForm()
     return render(request, "login.html", {"form": form})
 
 def register_view(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = forms.myUserCreationForm(request.POST)
         if form.is_valid():
             login(request, form.save())
             return redirect("tEvents:list")
     else:
-        form = UserCreationForm()
+        form = forms.myUserCreationForm()
     return render(request, "register.html", {"form": form})
 
 def logout_view(request):
