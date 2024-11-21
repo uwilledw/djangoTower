@@ -1,12 +1,16 @@
+a {
+    text-decoration: none;
+}
+
+.w-shadow :hover {
+    box-shadow: white 0px 2px 14px;
+}
+
 .hero-img {
     height: 35vh;
     width: 100%;
     object-fit: cover;
     object-position: bottom;
-}
-
-.w-shadow :hover {
-    box-shadow: white 0px 2px 14px;
 }
 
 .event-img {
@@ -31,6 +35,13 @@
     gap: 1rem;
 }
 
-a {
-    text-decoration: none;
+.ticket {
+    object-fit: cover;
+    object-position: center;
+    width: 20vw;
+    height: auto;
+}
+
+.bg-blue {
+    background-color: #325188;
 }

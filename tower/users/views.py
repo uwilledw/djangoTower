@@ -34,3 +34,9 @@ def accountPage(request):
     if request.user:
         tickets = Ticket.objects.filter(user=request.user.id)
     return render(request, "accountPage.html", {"tickets":tickets})
+
+def deleteTicket(request, id):
+    ticket = Ticket.objects.get(id=id)
+    if ticket.user == request.user:
+        ticket.delete()
+    return redirect("users:account")

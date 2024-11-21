@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
+
 {% block content %}
+<div class="about text-center">
+    {% if user.is_authenticated %}
+    <h1 class="">Welcome {{ user}}</h1>
+    {% else %}
+    <h1>Welcome</h1>
+    {% endif %}
+</div>
 <section class="row justify-content-center">
     {% if user.is_authenticated %}
         <div class="col-10 text-end my-4">
@@ -20,7 +28,24 @@
     </div>
     {% endif %}
 </section>
-<section class="row">
-
+<section class="row justify-content-center">
+    {% for t in tickets %}
+    <div class="col-md-7 d-flex justify-content-between m-4 rounded bg-blue p-2">
+        <!-- events I have tickets to -->
+        <div class="d-flex">
+            <div>
+                <img class="ticket rounded" src="{{t.tEvent.coverImg}}" alt="{{t.tEvent.name}}">
+            </div>
+            <div class="mx-3">
+                <h3>{{ t.tEvent.name }}</h3>
+                <h5>{{ t.tEvent.location }}</h5>
+                <h5>{{ t.tEvent.startDate }}</h5>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'users:deleteTicket' id=t.id %}" title="Cancel ticket" class="btn btn-danger">Refund</a>
+        </div>
+    </div>
+    {% endfor %}
 </section>
 {% endblock  %}
