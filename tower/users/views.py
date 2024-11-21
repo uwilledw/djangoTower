@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from tEvents.models import Ticket
+from tEvents.models import Ticket, TEvent
 from . import forms
 
 # Create your views here.
@@ -38,6 +38,9 @@ def accountPage(request):
 
 def deleteTicket(request, id):
     ticket = Ticket.objects.get(id=id)
+    tEvent = TEvent.objects.get(id=ticket.tEvent.id)
     if ticket.user == request.user:
         ticket.delete()
+        tEvent.capacity +=1
+        tEvent.save()
     return redirect("users:account")
