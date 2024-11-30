@@ -41,6 +41,16 @@ def attendEvent(request, id):
         tEvent.save()
         newTick.save()
     return redirect('tEvents:tEventDetails', id=tEvent.id)
+@login_required(login_url="users/login")
+def premiumEvent(request, id):
+    tEvent = TEvent.objects.get(id=id)
+    tick = Ticket.objects.filter(tEvent=tEvent, user=request.user)
+    if not tick and tEvent.capacity > 0:
+        newTick = Ticket(tEvent=tEvent, user=request.user, isPremium=True)
+        tEvent.capacity -=1
+        tEvent.save()
+        newTick.save()
+    return redirect('tEvents:tEventDetails', id=tEvent.id)
 
     
 
