@@ -40,6 +40,9 @@
                 <h3>{{ t.tEvent.name }}</h3>
                 <h5>{{ t.tEvent.location }}</h5>
                 <h5>{{ t.tEvent.startDate }}</h5>
+                {% if t.isPremium %}
+                <h5 class="bg-red">Premium</h5>
+                {% endif %}
             </div>
         </div>
         <div>
