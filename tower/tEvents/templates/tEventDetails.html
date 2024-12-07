@@ -64,7 +64,7 @@
 </section>
 
 <section class="row justify-content-center">
-    <div class="col-md-8 my-4 p-3 bg-light text-dark rounded">
+    <div class="col-md-7 my-4 p-3 bg-light text-dark rounded">
         <form action="{% url 'tEvents:comment' id=tEvent.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
@@ -77,7 +77,7 @@
         <h1>Comments:</h1>
     </div>
     {% for c in comments %}
-    <div class="col-md-8 my-4 p-3 bg-light text-dark rounded d-flex justify-content-between">
+    <div class="col-md-7 my-4 p-3 bg-light text-dark rounded d-flex justify-content-between">
         <div>
             <div class="d-flex align-items-center px-3">
                 <h3>{{ c.creator }}</h3>
