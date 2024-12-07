@@ -40,13 +40,13 @@
                 <h3>{{ t.tEvent.name }}</h3>
                 <h5>{{ t.tEvent.location }}</h5>
                 <h5>{{ t.tEvent.startDate }}</h5>
-                {% if t.isPremium %}
-                <h5 class="bg-red">Premium</h5>
-                {% endif %}
             </div>
         </div>
-        <div>
+        <div class="d-flex flex-column justify-content-between">
             <a href="{% url 'users:deleteTicket' id=t.id %}" title="Cancel ticket" class="btn btn-danger">Refund</a>
+            {% if t.isPremium %}
+            <h5 class="bg-gold rounded p-2">Premium</h5>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
